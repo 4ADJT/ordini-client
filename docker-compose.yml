@@ -1,0 +1,55 @@
+networks:
+  ordini_network:
+    driver: bridge
+
+volumes:
+  db_data:
+
+services:
+  postgresdb:
+    image: postgres:latest
+    container_name: postgres_ordini
+    restart: always
+    environment:
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_DB: ${DB_POSTGRES}
+    ports:
+      - "5432:5432"
+    healthcheck:
+      test: [
+        "CMD-SHELL",
+        "pg_isready -h localhost -U ${DB_USER} -d ${DB_POSTGRES}",
+      ]
+      interval: 10s
+      retries: 5
+      start_period: 30s
+      timeout: 10s
+    networks:
+      - ordini_network
+    volumes:
+      - db_data:/var/lib/postgresql/data
+
+  app:
+    container_name: ordini_client
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        APP_DB_DATASOURCE: ${APP_DB_DATASOURCE}
+        APP_DB_USERNAME: ${APP_DB_USERNAME}
+        APP_DB_PASSWORD: ${APP_DB_PASSWORD}
+        APP_PORT: ${APP_PORT}
+    restart: always
+    ports:
+      - "${APP_PORT}:${APP_PORT}"
+    environment:
+      DATASOURCE_URL: ${APP_DB_DATASOURCE}
+      DATASOURCE_USERNAME: ${APP_DB_USERNAME}
+      DATASOURCE_PASSWORD: ${APP_DB_PASSWORD}
+      SERVER_PORT: ${APP_PORT}
+    depends_on:
+      postgresdb:
+        condition: service_healthy
+    networks:
+      - ordini_network
