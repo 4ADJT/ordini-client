@@ -40,6 +40,7 @@ services:
         APP_DB_USERNAME: ${APP_DB_USERNAME}
         APP_DB_PASSWORD: ${APP_DB_PASSWORD}
         APP_PORT: ${APP_PORT}
+        JAVA_OPTS: "-Xms512m -Xmx1024m"
     restart: always
     ports:
       - "${APP_PORT}:${APP_PORT}"
