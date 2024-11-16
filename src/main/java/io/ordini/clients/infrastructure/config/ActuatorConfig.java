@@ -26,9 +26,9 @@ public class ActuatorConfig {
     return () -> {
       boolean isHealthy = checkServiceHealth();
       if (isHealthy) {
-        return Health.up().withDetail("status", "All systems operational").build();
+        return Health.up().withDetail("status", "All systems operational.").build();
       } else {
-        return Health.down().withDetail("status", "Service is down").build();
+        return Health.down().withDetail("status", "Service is down.").build();
       }
     };
   }
@@ -36,8 +36,8 @@ public class ActuatorConfig {
   @Bean
   public InfoContributor customInfoContributor() {
     return builder -> {
-      builder.withDetail("app", Map.of("name", "FoodArch", "version", "1.0.0"));
-      builder.withDetail("description", "FoodArch is a food delivery platform.");
+      builder.withDetail("app", Map.of("name", "Ordini Client", "version", "1.0.0"));
+      builder.withDetail("description", "Ordini delivery platform.");
     };
   }
 
