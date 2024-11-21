@@ -5,6 +5,8 @@ plugins {
 }
 val springCloudVersion by extra("2023.0.3")
 val springdocVersion = "2.6.0"
+val mapstructVersion = "1.6.3"
+val mapstructLombokBindingVersion = "0.2.0"
 
 group = "io.ordini"
 version = "1.0.0"
@@ -35,10 +37,16 @@ dependencies {
     implementation("org.springframework.cloud:spring-cloud-function-web")
     implementation("org.springframework.cloud:spring-cloud-starter-openfeign")
     implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:$springdocVersion")
+    implementation("org.springframework.cloud:spring-cloud-starter-stream-rabbit")
+    implementation("org.springframework.cloud:spring-cloud-stream-binder-rabbit")
+    implementation("org.mapstruct:mapstruct:$mapstructVersion")
     compileOnly("org.projectlombok:lombok")
     runtimeOnly("org.postgresql:postgresql")
     annotationProcessor("org.projectlombok:lombok")
+    annotationProcessor("org.projectlombok:lombok-mapstruct-binding:$mapstructLombokBindingVersion")
+    annotationProcessor("org.mapstruct:mapstruct-processor:$mapstructVersion")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
+    testImplementation("org.springframework.cloud:spring-cloud-stream-test-support")
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 }
 dependencyManagement {

@@ -1,4 +1,4 @@
-package io.ordini.clients.infrastructure.persistence.jpa.entity;
+package io.ordini.clients.infrastructure.persistence.jpa.entity.client.address;
 
 import jakarta.persistence.*;
 import lombok.*;
@@ -10,9 +10,9 @@ import java.util.UUID;
 
 @Getter
 @Setter
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@EqualsAndHashCode(of = "id")
 @Entity
 @Table(name = "client_address")
 public class ClientAddressEntity {
@@ -54,25 +54,6 @@ public class ClientAddressEntity {
     @PreUpdate
     public void preUpdate() {
         this.updatedAt = LocalDateTime.now();
-    }
-
-    public ClientAddressEntity(String street,
-                               int number,
-                               String complement,
-                               String neighborhood,
-                               String city,
-                               String state,
-                               String country,
-                               String zipCode
-    ) {
-        this.street = street;
-        this.number = number;
-        this.complement = complement;
-        this.neighborhood = neighborhood;
-        this.city = city;
-        this.state = state;
-        this.country = country;
-        this.zipCode = zipCode;
     }
 
 }

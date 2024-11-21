@@ -54,3 +54,17 @@ services:
         condition: service_healthy
     networks:
       - ordini_network
+
+  rabbitmq:
+    image: rabbitmq:4.0-management
+    container_name: 'rabbitmq'
+    ports:
+      - 5672:5672
+      - 15672:15672
+    volumes:
+      - ./dados:/var/lib/rabbitmq/
+    environment:
+      - RABBITMQ_DEFAULT_USER=guest
+      - RABBITMQ_DEFAULT_PASS=guest
+    networks:
+      - ordini_network

@@ -1,6 +1,6 @@
 package io.ordini.clients.infrastructure.config;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.AllArgsConstructor;
 import org.springframework.boot.actuate.health.Health;
 import org.springframework.boot.actuate.health.HealthIndicator;
 import org.springframework.boot.actuate.info.InfoContributor;
@@ -13,13 +13,9 @@ import java.sql.SQLException;
 import java.util.Map;
 
 @Configuration
+@AllArgsConstructor
 public class ActuatorConfig {
   private final DataSource dataSource;
-
-  @Autowired
-  public ActuatorConfig(DataSource dataSource) {
-    this.dataSource = dataSource;
-  }
 
   @Bean
   public HealthIndicator customHealthIndicator() {

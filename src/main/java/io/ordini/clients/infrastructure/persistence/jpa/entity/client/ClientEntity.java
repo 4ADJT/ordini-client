@@ -1,5 +1,6 @@
-package io.ordini.clients.infrastructure.persistence.jpa.entity;
+package io.ordini.clients.infrastructure.persistence.jpa.entity.client;
 
+import io.ordini.clients.infrastructure.persistence.jpa.entity.client.address.ClientAddressEntity;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
@@ -10,9 +11,9 @@ import java.util.UUID;
 
 @Getter
 @Setter
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@EqualsAndHashCode(of = "id")
 @Entity
 @Table(name = "clients")
 public class ClientEntity {
@@ -52,21 +53,6 @@ public class ClientEntity {
     @PreUpdate
     public void preUpdate() {
         this.updatedAt = LocalDateTime.now();
-    }
-
-    public ClientEntity(String name,
-                        String email,
-                        String phone,
-                        String cellphone,
-                        String document,
-                        ClientAddressEntity address
-    ) {
-        this.name = name;
-        this.email = email;
-        this.phone = phone;
-        this.cellphone = cellphone;
-        this.document = document;
-        this.address = address;
     }
 
 }

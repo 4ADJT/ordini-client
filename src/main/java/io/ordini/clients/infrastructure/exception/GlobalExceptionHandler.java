@@ -1,7 +1,6 @@
 package io.ordini.clients.infrastructure.exception;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -17,10 +16,9 @@ import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.Map;
 
+@Slf4j
 @ControllerAdvice
 public class GlobalExceptionHandler {
-
-  private static final Logger logger = LoggerFactory.getLogger(GlobalExceptionHandler.class);
 
   @ExceptionHandler({ResourceNotFoundException.class, NoResourceFoundException.class, NoHandlerFoundException.class})
   public ResponseEntity<Object> handleNotFoundExceptions(Exception ex, WebRequest request) {
@@ -33,7 +31,7 @@ public class GlobalExceptionHandler {
     body.put("path", ((ServletWebRequest) request).getRequest().getRequestURI());
     body.put("status", status.value());
 
-    logger.warn("Not found exception: {}", ex.getMessage());
+    log.warn("Not found exception: {}", ex.getMessage());
     return new ResponseEntity<>(body, status);
   }
 
@@ -52,7 +50,7 @@ public class GlobalExceptionHandler {
 
     body.put("errors", fieldErrors);
 
-    logger.warn("Validation error: {}", ex.getMessage());
+    log.warn("Validation error: {}", ex.getMessage());
     return new ResponseEntity<>(body, status);
   }
 
@@ -66,9 +64,9 @@ public class GlobalExceptionHandler {
         status = (HttpStatus) getStatusMethod.invoke(ex);
       }
     } catch (NoSuchMethodException | SecurityException e) {
-      logger.debug("Status method not found or inaccessible: {}", e.getMessage());
+      log.debug("Status method not found or inaccessible: {}", e.getMessage());
     } catch (Exception e) {
-      logger.error("Error while extracting status: {}", e.getMessage(), e);
+      log.error("Error while extracting status: {}", e.getMessage(), e);
     }
 
     Map<String, Object> body = new HashMap<>();
@@ -78,7 +76,7 @@ public class GlobalExceptionHandler {
     body.put("path", ((ServletWebRequest) request).getRequest().getRequestURI());
     body.put("status", status.value());
 
-    logger.error("Exception occurred: {}", ex.getMessage(), ex);
+    log.error("Exception occurred: {}", ex.getMessage(), ex);
     return new ResponseEntity<>(body, status);
   }
 }
