@@ -4,12 +4,13 @@ networks:
 
 volumes:
   db_data:
+  rabbit_data:
 
 services:
   postgresdb:
     image: postgres:latest
     container_name: postgres_ordini
-    restart: always
+    restart: on-failure
     environment:
       POSTGRES_USER: ${DB_USER}
       POSTGRES_PASSWORD: ${DB_PASSWORD}
@@ -41,7 +42,7 @@ services:
         APP_DB_PASSWORD: ${APP_DB_PASSWORD}
         APP_PORT: ${APP_PORT}
         JAVA_OPTS: "-Xms512m -Xmx1024m"
-    restart: always
+    restart: on-failure
     ports:
       - "${APP_PORT}:${APP_PORT}"
     environment:
@@ -58,11 +59,12 @@ services:
   rabbitmq:
     image: rabbitmq:4.0-management
     container_name: 'rabbitmq'
+    restart: on-failure
     ports:
       - 5672:5672
       - 15672:15672
     volumes:
-      - ./dados:/var/lib/rabbitmq/
+      - rabbit_data:/var/lib/rabbitmq/
     environment:
       - RABBITMQ_DEFAULT_USER=guest
       - RABBITMQ_DEFAULT_PASS=guest

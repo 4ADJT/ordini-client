@@ -1,6 +1,6 @@
 CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
 
-CREATE TABLE client_address (
+CREATE TABLE IF NOT EXISTS client_address (
                                 id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
                                 street VARCHAR(255) NOT NULL,
                                 number INTEGER NOT NULL,
@@ -14,7 +14,7 @@ CREATE TABLE client_address (
                                 updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
-CREATE TABLE clients (
+CREATE TABLE IF NOT EXISTS clients (
                          id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
                          name VARCHAR(255) NOT NULL,
                          email VARCHAR(255) NOT NULL UNIQUE,
@@ -31,8 +31,8 @@ CREATE TABLE clients (
                                  ON DELETE CASCADE
 );
 
-CREATE INDEX idx_clients_name ON clients(name);
-CREATE INDEX idx_clients_email ON clients(email);
-CREATE INDEX idx_clients_document ON clients(document);
-CREATE INDEX idx_client_address_city ON client_address(city);
-CREATE INDEX idx_client_address_zip_code ON client_address(zip_code);
+CREATE INDEX IF NOT EXISTS idx_clients_name ON clients(name);
+CREATE INDEX IF NOT EXISTS idx_clients_email ON clients(email);
+CREATE INDEX IF NOT EXISTS idx_clients_document ON clients(document);
+CREATE INDEX IF NOT EXISTS idx_client_address_city ON client_address(city);
+CREATE INDEX IF NOT EXISTS idx_client_address_zip_code ON client_address(zip_code);

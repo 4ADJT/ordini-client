@@ -14,7 +14,6 @@ RUN ./gradlew build -x test --no-daemon
 FROM amazoncorretto:21 AS runner
 
 ENV SPRING_PROFILES_ACTIVE=prod
-# ENV JAVA_OPTS="-Xms512m -Xmx1024m"
 
 WORKDIR /app
 
