@@ -3,24 +3,24 @@ networks:
     driver: bridge
 
 volumes:
-  db_data:
-  rabbit_data:
+  ordini_db_data:
+  ordini_rabbit_data:
 
 services:
   postgresdb:
     image: postgres:latest
-    container_name: postgres_ordini
+    container_name: ordini_postgres
     restart: on-failure
     environment:
-      POSTGRES_USER: ${DB_USER}
-      POSTGRES_PASSWORD: ${DB_PASSWORD}
-      POSTGRES_DB: ${DB_POSTGRES}
+      POSTGRES_USER: ${DATASOURCE_USERNAME}
+      POSTGRES_PASSWORD: ${DATASOURCE_PASSWORD}
+      POSTGRES_DB: ${DATASOURCE_DATABASE}
     ports:
       - "5432:5432"
     healthcheck:
       test: [
         "CMD-SHELL",
-        "pg_isready -h localhost -U ${DB_USER} -d ${DB_POSTGRES}",
+        "pg_isready -h localhost -U ${DATASOURCE_USERNAME} -d ${DATASOURCE_DATABASE}",
       ]
       interval: 10s
       retries: 5
@@ -29,31 +29,22 @@ services:
     networks:
       - ordini_network
     volumes:
-      - db_data:/var/lib/postgresql/data
+      - ordini_db_data:/var/lib/postgresql/data
 
   app:
     container_name: ordini_client
     build:
       context: .
       dockerfile: Dockerfile
-      args:
-        APP_DB_DATASOURCE: ${APP_DB_DATASOURCE}
-        APP_DB_USERNAME: ${APP_DB_USERNAME}
-        APP_DB_PASSWORD: ${APP_DB_PASSWORD}
-        APP_PORT: ${APP_PORT}
-        JAVA_OPTS: "-Xms512m -Xmx1024m"
-        RABBITMQ_HOST: ${RABBITMQ_HOST}
-        RABBITMQ_PORT: ${RABBITMQ_PORT}
-        RABBITMQ_USERNAME: ${RABBITMQ_USERNAME}
-        RABBITMQ_PASSWORD: ${RABBITMQ_PASSWORD}
     restart: on-failure
     ports:
-      - "${APP_PORT}:${APP_PORT}"
+      - "${SERVER_PORT}:${SERVER_PORT}"
     environment:
-      DATASOURCE_URL: ${APP_DB_DATASOURCE}
-      DATASOURCE_USERNAME: ${APP_DB_USERNAME}
-      DATASOURCE_PASSWORD: ${APP_DB_PASSWORD}
-      SERVER_PORT: ${APP_PORT}
+#      JAVA_OPTS: "-Xms512m -Xmx1024m"
+      DATASOURCE_URL: ${DATASOURCE_URL}
+      DATASOURCE_USERNAME: ${DATASOURCE_USERNAME}
+      DATASOURCE_PASSWORD: ${DATASOURCE_PASSWORD}
+      SERVER_PORT: ${SERVER_PORT}
       RABBITMQ_HOST: ${RABBITMQ_HOST}
       RABBITMQ_PORT: ${RABBITMQ_PORT}
       RABBITMQ_USERNAME: ${RABBITMQ_USERNAME}
@@ -74,7 +65,7 @@ services:
       - 5672:5672
       - 15672:15672
     volumes:
-      - rabbit_data:/var/lib/rabbitmq/
+      - ordini_rabbit_data:/var/lib/rabbitmq/
     environment:
       - RABBITMQ_DEFAULT_USER=guest
       - RABBITMQ_DEFAULT_PASS=guest

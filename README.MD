@@ -24,15 +24,12 @@ A execução do build é feita através do comando `./gradlew build` na raiz do 
 Use o arquivo de tipo `.env` para definir as variáveis de ambiente necessárias para execução da aplicação.
 
 ```dotenv {.env}
-DB_USER=postgres
-DB_PASSWORD=postgres
-DB_POSTGRES=ordini
-DB_URL=jdbc:postgresql://postgresdb:5432/ordini
+DATASOURCE_USERNAME=postgres
+DATASOURCE_PASSWORD=postgres
+DATASOURCE_DATABASE=ordini
+DATASOURCE_URL=jdbc:postgresql://postgresdb:5432/ordini
 
-APP_PORT=8080
-APP_DB_DATASOURCE=jdbc:postgresql://postgresdb:5432/ordini
-APP_DB_USERNAME=postgres
-APP_DB_PASSWORD=postgres
+SERVER_PORT=8080
 
 RABBITMQ_HOST=localhost
 RABBITMQ_PORT=5672
