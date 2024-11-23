@@ -3,7 +3,7 @@ CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
 CREATE TABLE IF NOT EXISTS client_address (
                                 id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
                                 street VARCHAR(255) NOT NULL,
-                                number INTEGER NOT NULL,
+                                number INTEGER DEFAULT 0,
                                 complement VARCHAR(255),
                                 neighborhood VARCHAR(100),
                                 city VARCHAR(100) NOT NULL,

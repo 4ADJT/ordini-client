@@ -33,6 +33,11 @@ APP_PORT=8080
 APP_DB_DATASOURCE=jdbc:postgresql://postgresdb:5432/ordini
 APP_DB_USERNAME=postgres
 APP_DB_PASSWORD=postgres
+
+RABBITMQ_HOST=localhost
+RABBITMQ_PORT=5672
+RABBITMQ_USERNAME=guest
+RABBITMQ_PASSWORD=guest
 ```
 
 ## Execução
