@@ -1,8 +1,8 @@
 package io.ordini.clients.adapter.gateway.db;
 
-import io.ordini.clients.domain.model.client.ClientModel;
 import io.ordini.clients.domain.repository.IClientRepository;
 import io.ordini.clients.infrastructure.persistence.jpa.db.IClientJpaRepository;
+import io.ordini.clients.infrastructure.persistence.jpa.entity.client.ClientEntity;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -16,27 +16,27 @@ public class ClientRepositoryImpl implements IClientRepository {
   public final IClientJpaRepository clientJpaRepository;
 
   @Override
-  public ClientModel save(ClientModel client) {
+  public ClientEntity create(ClientEntity client) {
+    return clientJpaRepository.save(client);
+  }
+
+  @Override
+  public UUID delete(ClientEntity client) {
     return null;
   }
 
   @Override
-  public UUID delete(ClientModel client) {
+  public ClientEntity findById(String id) {
     return null;
   }
 
   @Override
-  public ClientModel findById(String id) {
+  public ClientEntity findByEmail(String email) {
     return null;
   }
 
   @Override
-  public ClientModel findByEmail(String email) {
-    return null;
-  }
-
-  @Override
-  public Page<ClientModel> findAll(Pageable pageable) {
+  public Page<ClientEntity> findAll(Pageable pageable) {
     return null;
   }
 }

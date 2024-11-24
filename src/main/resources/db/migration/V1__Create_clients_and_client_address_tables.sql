@@ -21,7 +21,7 @@ CREATE TABLE IF NOT EXISTS clients (
                          phone VARCHAR(50),
                          cellphone VARCHAR(50),
                          document VARCHAR(50) NOT NULL UNIQUE,
-                         address_id UUID NOT NULL,
+                         address_id UUID UNIQUE,
                          created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
                          updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
 

@@ -1,15 +1,15 @@
 package io.ordini.clients.domain.repository;
 
-import io.ordini.clients.domain.model.client.ClientModel;
+import io.ordini.clients.infrastructure.persistence.jpa.entity.client.ClientEntity;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
 import java.util.UUID;
 
 public interface IClientRepository {
-  ClientModel save(ClientModel client);
-  UUID delete(ClientModel client);
-  ClientModel findById(String id);
-  ClientModel findByEmail(String email);
-  Page<ClientModel> findAll(Pageable pageable);
+  ClientEntity create(ClientEntity client);
+  UUID delete(ClientEntity client);
+  ClientEntity findById(String id);
+  ClientEntity findByEmail(String email);
+  Page<ClientEntity> findAll(Pageable pageable);
 }
