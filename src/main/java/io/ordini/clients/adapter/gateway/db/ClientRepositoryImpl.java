@@ -8,35 +8,47 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Repository;
 
+import java.util.Optional;
 import java.util.UUID;
 
 @Repository
 @AllArgsConstructor
 public class ClientRepositoryImpl implements IClientRepository {
-  public final IClientJpaRepository clientJpaRepository;
+  public final IClientJpaRepository repository;
 
   @Override
   public ClientEntity create(ClientEntity client) {
-    return clientJpaRepository.save(client);
+    return repository.save(client);
   }
 
   @Override
-  public UUID delete(ClientEntity client) {
+  public UUID delete(UUID clientId) {
+
+    if (repository.existsById(clientId)) {
+      repository.deleteById(clientId);
+      return clientId;
+    }
+
     return null;
   }
 
   @Override
-  public ClientEntity findById(String id) {
-    return null;
+  public Optional<ClientEntity> findById(UUID id) {
+    return repository.findById(id);
   }
 
   @Override
   public ClientEntity findByEmail(String email) {
-    return null;
+    return repository.findByEmail(email);
+  }
+
+  @Override
+  public ClientEntity findByDocument(String document) {
+    return repository.findByDocument(document);
   }
 
   @Override
   public Page<ClientEntity> findAll(Pageable pageable) {
-    return null;
+    return repository.findAll(pageable);
   }
 }

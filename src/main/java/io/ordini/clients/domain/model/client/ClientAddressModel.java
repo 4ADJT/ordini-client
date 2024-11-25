@@ -1,10 +1,11 @@
-package io.ordini.clients.domain.model.client.address;
+package io.ordini.clients.domain.model.client;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Data
@@ -22,5 +23,10 @@ public class ClientAddressModel {
   private String state;
   private String country;
   private String zipCode;
+  private long longitude;
+  private long latitude;
+  private ClientModel client;
+  private LocalDateTime createdAt;
+  private LocalDateTime updatedAt;
 
 }

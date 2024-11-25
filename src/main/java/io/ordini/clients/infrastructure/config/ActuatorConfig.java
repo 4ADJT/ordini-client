@@ -17,6 +17,10 @@ import java.util.Map;
 public class ActuatorConfig {
   private final DataSource dataSource;
 
+  private static final String APP = "Ordini Client";
+  private static final String VERSION = "Ordini Client";
+  private static final String DESCRIPTION = "Ordini Client Service";
+
   @Bean
   public HealthIndicator customHealthIndicator() {
     return () -> {
@@ -32,8 +36,8 @@ public class ActuatorConfig {
   @Bean
   public InfoContributor customInfoContributor() {
     return builder -> {
-      builder.withDetail("app", Map.of("name", "Ordini Client", "version", "1.0.0"));
-      builder.withDetail("description", "Ordini delivery platform.");
+      builder.withDetail("app", Map.of("name", APP, "version", VERSION));
+      builder.withDetail("description", DESCRIPTION);
     };
   }
 

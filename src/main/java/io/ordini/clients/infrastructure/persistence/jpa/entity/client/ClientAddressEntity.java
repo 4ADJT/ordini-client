@@ -1,4 +1,4 @@
-package io.ordini.clients.infrastructure.persistence.jpa.entity.client.address;
+package io.ordini.clients.infrastructure.persistence.jpa.entity.client;
 
 import jakarta.persistence.*;
 import lombok.*;
@@ -21,6 +21,7 @@ public class ClientAddressEntity {
   @GeneratedValue(strategy = GenerationType.UUID)
   private UUID id;
 
+  @Column(nullable = false)
   private String street;
 
   private int number;
@@ -29,13 +30,25 @@ public class ClientAddressEntity {
 
   private String neighborhood;
 
+  @Column(nullable = false)
   private String city;
 
+  @Column(nullable = false)
   private String state;
 
+  @Column(nullable = false)
   private String country;
 
+  @Column(name = "zip_code", nullable = false)
   private String zipCode;
+
+  private long longitude;
+
+  private long latitude;
+
+  @OneToOne
+  @JoinColumn(name = "client_id", referencedColumnName = "id", nullable = true, unique = true)
+  private ClientEntity client;
 
   @CreationTimestamp
   @Column(name = "created_at")

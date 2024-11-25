@@ -1,6 +1,5 @@
 package io.ordini.clients.infrastructure.persistence.jpa.entity.client;
 
-import io.ordini.clients.infrastructure.persistence.jpa.entity.client.address.ClientAddressEntity;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
@@ -24,16 +23,17 @@ public class ClientEntity {
 
   private String name;
 
+  @Column(unique = true)
   private String email;
 
   private String phone;
 
   private String cellphone;
 
+  @Column(unique = true)
   private String document;
 
-  @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-  @JoinColumn(name = "address_id", referencedColumnName = "id", nullable = true, unique = true)
+  @OneToOne(mappedBy = "client", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
   private ClientAddressEntity address;
 
   @CreationTimestamp

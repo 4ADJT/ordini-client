@@ -12,7 +12,7 @@ src
     │               │   ├── gateway               # Gateways que conectam os casos de uso a sistemas externos
     │               │   ├── presenter             # Presenters que formatam a resposta para o cliente
     │               │   ├── mapper                # Interfaces para conversão entre entidades de modelo e de banco de dados
-    │               │   └── dto                   # DTOs para requisições e respostas, garantindo um formato padronizado
+    │               │   └── dto                   # (Opcional, se separado do presenter) DTOs para requisições e respostas, garantindo um formato padronizado
     │               │
     │               ├── application               # Casos de uso (Use Cases)
     │               │   └── usecase               # Cada caso de uso encapsula um fluxo específico da aplicação
@@ -30,24 +30,6 @@ src
     └── resources
         ├── db
         │   └── migration                         # Migrations do Flyway para versionamento do banco de dados
-        ├── application.yml                       # Configurações do Spring Boot (DB, Actuator, Eureka, etc.)
-        └── logback-spring.xml                    # Configuração de logging com Logback (opcional)
+        └── application.yml                       # Configurações do Spring Boot (DB, Actuator, Eureka, etc.)
         
-└── test
-    └── java
-        └── com
-            └── example
-                └── project
-                    ├── application
-                    │   └── usecase               # Testes de Casos de Uso, validando a lógica de negócio
-                    │
-                    ├── adapter
-                    │   ├── controller            # Testes de adaptadores e controllers para validação das interfaces
-                    │   ├── mapper                # Testes dos mapeadores entre entidades de modelo e de banco de dados
-                    │
-                    ├── domain                    # Testes para as entidades de domínio (models)
-                    │   └── model                 # Valida a lógica interna e regras de negócio nas entidades
-                    │
-                    └── infrastructure
-                        └── persistence           # Testes de infraestrutura e repositórios customizados
 ```

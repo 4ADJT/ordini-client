@@ -1,11 +1,12 @@
-package io.ordini.clients.adapter.presenter.dto.client;
+package io.ordini.clients.adapter.presenter.client;
 
+import io.ordini.clients.domain.model.client.ClientModel;
 import lombok.Builder;
 
 import java.time.LocalDateTime;
 import java.util.UUID;
 
-public class ClientPresenter {
+public class ClientAddressPresenter {
 
   @Builder
   public record ClientAddressRequest(
@@ -16,18 +17,10 @@ public class ClientPresenter {
       String city,
       String state,
       String country,
-      String zipCode
-  ) {
-  }
-
-  @Builder
-  public record ClientRequest(
-      String name,
-      String email,
-      String phone,
-      String cellphone,
-      String document,
-      ClientAddressRequest address
+      String zipCode,
+      long longitude,
+      long latitude,
+      ClientModel client
   ) {
   }
 
@@ -41,20 +34,10 @@ public class ClientPresenter {
       String city,
       String state,
       String country,
-      String zipCode
-  ) {}
-
-  @Builder
-  public record ClientResponse(
-      UUID id,
-      String name,
-      String email,
-      String phone,
-      String cellphone,
-      String document,
-      ClientAddressResponse address,
+      String zipCode,
+      long longitude,
+      long latitude,
       LocalDateTime createdAt
-  ) {
-  }
+  ) {}
 
 }
