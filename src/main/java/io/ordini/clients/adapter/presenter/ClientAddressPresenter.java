@@ -23,6 +23,22 @@ public class ClientAddressPresenter {
   }
 
   @Builder
+  public record ClientAddressUpdateRequest(
+      UUID clientId,
+      String street,
+      int number,
+      String complement,
+      String neighborhood,
+      String city,
+      String state,
+      String country,
+      String zipCode,
+      long longitude,
+      long latitude
+  ) {
+  }
+
+  @Builder
   public record ClientAddressResponse(
       UUID id,
       UUID clientId,
@@ -37,6 +53,25 @@ public class ClientAddressPresenter {
       long longitude,
       long latitude,
       LocalDateTime createdAt
+  ) {
+  }
+
+  @Builder
+  public record ClientAddressUpdateResponse(
+      UUID id,
+      UUID clientId,
+      String street,
+      int number,
+      String complement,
+      String neighborhood,
+      String city,
+      String state,
+      String country,
+      String zipCode,
+      long longitude,
+      long latitude,
+      LocalDateTime createdAt,
+      LocalDateTime updatedAt
   ) {
   }
 
