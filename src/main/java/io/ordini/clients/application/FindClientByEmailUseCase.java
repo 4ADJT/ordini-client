@@ -5,7 +5,6 @@ import io.ordini.clients.adapter.mapper.ClientMapper;
 import io.ordini.clients.adapter.presenter.ClientAddressPresenter;
 import io.ordini.clients.adapter.presenter.ClientPresenter;
 import io.ordini.clients.domain.exception.ClientNotFoundException;
-import io.ordini.clients.domain.model.ClientAddressModel;
 import io.ordini.clients.domain.model.ClientModel;
 import io.ordini.clients.domain.repository.IClientRepository;
 import io.ordini.clients.infrastructure.persistence.jpa.entity.ClientEntity;
@@ -44,21 +43,20 @@ public class FindClientByEmailUseCase {
           .build();
     }
 
-    ClientAddressModel addressModel = clientAddressMapper.toModel(clientByEmail.getAddress());
-
     ClientAddressPresenter.ClientAddressResponse addressBuildPresenter = ClientAddressPresenter.ClientAddressResponse.builder()
-        .id(addressModel.getId())
-        .street(addressModel.getStreet())
-        .number(addressModel.getNumber())
-        .complement(addressModel.getComplement())
-        .neighborhood(addressModel.getNeighborhood())
-        .city(addressModel.getCity())
-        .state(addressModel.getState())
-        .country(addressModel.getCountry())
-        .zipCode(addressModel.getZipCode())
-        .longitude(addressModel.getLongitude())
-        .latitude(addressModel.getLatitude())
-        .createdAt(addressModel.getCreatedAt())
+        .id(model.getAddress().getId())
+        .clientId(model.getId())
+        .street(model.getAddress().getStreet())
+        .number(model.getAddress().getNumber())
+        .complement(model.getAddress().getComplement())
+        .neighborhood(model.getAddress().getNeighborhood())
+        .city(model.getAddress().getCity())
+        .state(model.getAddress().getState())
+        .country(model.getAddress().getCountry())
+        .zipCode(model.getAddress().getZipCode())
+        .longitude(model.getAddress().getLongitude())
+        .latitude(model.getAddress().getLatitude())
+        .createdAt(model.getAddress().getCreatedAt())
         .build();
 
 

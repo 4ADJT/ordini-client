@@ -4,7 +4,6 @@ import io.ordini.clients.adapter.mapper.ClientAddressMapper;
 import io.ordini.clients.adapter.mapper.ClientMapper;
 import io.ordini.clients.adapter.presenter.ClientAddressPresenter;
 import io.ordini.clients.adapter.presenter.ClientPresenter;
-import io.ordini.clients.domain.model.ClientAddressModel;
 import io.ordini.clients.domain.model.ClientModel;
 import io.ordini.clients.domain.repository.IClientRepository;
 import lombok.AllArgsConstructor;
@@ -43,22 +42,21 @@ public class FindAllClientsUseCase {
             .build();
       }
 
-      ClientAddressModel clientBuildAddressModel = clientAddressMapper.toModel(client.getAddress());
-
       ClientAddressPresenter.ClientAddressResponse addressBuildPresenter =
           ClientAddressPresenter.ClientAddressResponse.builder()
-              .id(clientBuildAddressModel.getId())
-              .street(clientBuildAddressModel.getStreet())
-              .number(clientBuildAddressModel.getNumber())
-              .complement(clientBuildAddressModel.getComplement())
-              .neighborhood(clientBuildAddressModel.getNeighborhood())
-              .city(clientBuildAddressModel.getCity())
-              .state(clientBuildAddressModel.getState())
-              .country(clientBuildAddressModel.getCountry())
-              .zipCode(clientBuildAddressModel.getZipCode())
-              .longitude(clientBuildAddressModel.getLongitude())
-              .latitude(clientBuildAddressModel.getLatitude())
-              .createdAt(clientBuildAddressModel.getCreatedAt())
+              .id(clientBuildModel.getAddress().getId())
+              .clientId(clientBuildModel.getId())
+              .street(clientBuildModel.getAddress().getStreet())
+              .number(clientBuildModel.getAddress().getNumber())
+              .complement(clientBuildModel.getAddress().getComplement())
+              .neighborhood(clientBuildModel.getAddress().getNeighborhood())
+              .city(clientBuildModel.getAddress().getCity())
+              .state(clientBuildModel.getAddress().getState())
+              .country(clientBuildModel.getAddress().getCountry())
+              .zipCode(clientBuildModel.getAddress().getZipCode())
+              .longitude(clientBuildModel.getAddress().getLongitude())
+              .latitude(clientBuildModel.getAddress().getLatitude())
+              .createdAt(clientBuildModel.getAddress().getCreatedAt())
               .build();
 
       return ClientPresenter.ClientAndAddressResponse.builder()

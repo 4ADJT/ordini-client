@@ -1,6 +1,5 @@
 package io.ordini.clients.adapter.presenter;
 
-import io.ordini.clients.domain.model.ClientModel;
 import lombok.Builder;
 
 import java.time.LocalDateTime;
@@ -19,14 +18,14 @@ public class ClientAddressPresenter {
       String country,
       String zipCode,
       long longitude,
-      long latitude,
-      ClientModel client
+      long latitude
   ) {
   }
 
   @Builder
   public record ClientAddressResponse(
       UUID id,
+      UUID clientId,
       String street,
       int number,
       String complement,
@@ -38,6 +37,7 @@ public class ClientAddressPresenter {
       long longitude,
       long latitude,
       LocalDateTime createdAt
-  ) {}
+  ) {
+  }
 
 }

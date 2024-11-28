@@ -5,7 +5,7 @@ import io.ordini.clients.infrastructure.persistence.jpa.entity.ClientEntity;
 import org.mapstruct.InheritConfiguration;
 import org.mapstruct.Mapper;
 
-@Mapper(componentModel = "spring")
+@Mapper(componentModel = "spring", uses = ClientAddressMapper.class)
 public interface ClientMapper {
 
     ClientModel toModel(ClientEntity entity);
