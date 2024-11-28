@@ -2,6 +2,7 @@ package io.ordini.clients.adapter.controller;
 
 import io.ordini.clients.adapter.presenter.ClientPresenter;
 import io.ordini.clients.application.DeleteClientUseCase;
+import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -21,6 +22,7 @@ public class DeleteClientController {
   private final DeleteClientUseCase deleteClientUseCase;
 
   @DeleteMapping(value = "/delete/{clientId}")
+  @Operation(summary = "Delete client by id",  description = "Delete client by id.")
   public ResponseEntity<ClientPresenter.ClientDeletedResponse> delete(
       @PathVariable UUID clientId
   ) {
