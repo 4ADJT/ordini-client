@@ -22,6 +22,15 @@ public class ClientRepositoryImpl implements IClientRepository {
   }
 
   @Override
+  public ClientEntity update(ClientEntity client) {
+    if (repository.existsById(client.getId())) {
+      return repository.saveAndFlush(client);
+    }
+
+    return null;
+  }
+
+  @Override
   public UUID delete(UUID clientId) {
 
     if (repository.existsById(clientId)) {

@@ -2,10 +2,12 @@ package io.ordini.clients.application;
 
 import io.ordini.clients.adapter.mapper.client.ClientMapper;
 import io.ordini.clients.adapter.presenter.client.ClientPresenter;
+import io.ordini.clients.domain.exception.ClientNotFoundException;
 import io.ordini.clients.domain.model.client.ClientModel;
 import io.ordini.clients.domain.repository.IClientRepository;
 import io.ordini.clients.infrastructure.persistence.jpa.entity.client.ClientEntity;
 import lombok.AllArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -19,27 +21,23 @@ public class UpdateClientUseCase {
     ClientEntity clientEntity = repository.findById(client.id()).orElse(null);
 
     if(clientEntity == null) {
-      throw new RuntimeException("Client not found");
+      throw new ClientNotFoundException("Client not found", HttpStatus.BAD_REQUEST);
     }
-
-    ClientModel validate = new ClientModel();
-
-    validate.validateCPF(client.document());
-    validate.validateEmail(client.email());
 
     ClientModel clientModel = ClientModel
         .builder()
-        .email(client.email())
+        .id(clientEntity.getId())
+        .email(clientEntity.getEmail())
         .name(client.name())
         .phone(client.phone())
         .cellphone(client.cellphone())
-        .document(client.document())
+        .document(clientEntity.getDocument())
         .createdAt(clientEntity.getCreatedAt())
         .build();
 
     ClientEntity clientToEntity = mapper.toEntity(clientModel);
 
-    ClientEntity savedClient = repository.create(clientToEntity);
+    ClientEntity savedClient = repository.update(clientToEntity);
 
     ClientModel model = mapper.toModel(savedClient);
 

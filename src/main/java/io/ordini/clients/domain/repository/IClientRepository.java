@@ -9,6 +9,7 @@ import java.util.UUID;
 
 public interface IClientRepository {
   ClientEntity create(ClientEntity client);
+  ClientEntity update(ClientEntity client);
   UUID delete(UUID clientId);
   Optional<ClientEntity> findById(UUID id);
   ClientEntity findByEmail(String email);

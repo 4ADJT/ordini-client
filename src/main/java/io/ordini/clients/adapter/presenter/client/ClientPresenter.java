@@ -31,12 +31,17 @@ public class ClientPresenter {
 
   @Builder
   public record ClientUpdateRequest(
+
+      @NonNull
       UUID id,
+
+      @NonNull
+      @NotEmpty
       String name,
-      String email,
+
       String phone,
-      String cellphone,
-      String document
+      String cellphone
+
   ) {
   }
 
