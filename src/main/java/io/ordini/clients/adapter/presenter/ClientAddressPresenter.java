@@ -1,6 +1,6 @@
-package io.ordini.clients.adapter.presenter.client;
+package io.ordini.clients.adapter.presenter;
 
-import io.ordini.clients.domain.model.client.ClientModel;
+import io.ordini.clients.domain.model.ClientModel;
 import lombok.Builder;
 
 import java.time.LocalDateTime;

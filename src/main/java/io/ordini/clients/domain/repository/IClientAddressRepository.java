@@ -1,6 +1,6 @@
 package io.ordini.clients.domain.repository;
 
-import io.ordini.clients.infrastructure.persistence.jpa.entity.client.ClientAddressEntity;
+import io.ordini.clients.infrastructure.persistence.jpa.entity.ClientAddressEntity;
 
 import java.util.UUID;
 

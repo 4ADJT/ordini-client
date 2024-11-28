@@ -1,4 +1,4 @@
-package io.ordini.clients.infrastructure.persistence.jpa.entity.client;
+package io.ordini.clients.infrastructure.persistence.jpa.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
@@ -14,28 +14,41 @@ import java.util.UUID;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "clients")
-public class ClientEntity {
+@Table(name = "client_address")
+public class ClientAddressEntity {
 
   @Id
   @GeneratedValue(strategy = GenerationType.UUID)
   private UUID id;
 
   @Column(nullable = false)
-  private String name;
+  private String street;
 
-  @Column(unique = true)
-  private String email;
+  private int number;
 
-  private String phone;
+  private String complement;
 
-  private String cellphone;
+  private String neighborhood;
 
-  @Column(unique = true)
-  private String document;
+  @Column(nullable = false)
+  private String city;
 
-  @OneToOne(mappedBy = "client", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-  private ClientAddressEntity address;
+  @Column(nullable = false)
+  private String state;
+
+  @Column(nullable = false)
+  private String country;
+
+  @Column(name = "zip_code", nullable = false)
+  private String zipCode;
+
+  private long longitude;
+
+  private long latitude;
+
+  @OneToOne
+  @JoinColumn(name = "client_id", referencedColumnName = "id", nullable = true, unique = true)
+  private ClientEntity client;
 
   @CreationTimestamp
   @Column(name = "created_at")

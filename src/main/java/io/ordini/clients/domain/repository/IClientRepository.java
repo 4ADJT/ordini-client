@@ -1,6 +1,6 @@
 package io.ordini.clients.domain.repository;
 
-import io.ordini.clients.infrastructure.persistence.jpa.entity.client.ClientEntity;
+import io.ordini.clients.infrastructure.persistence.jpa.entity.ClientEntity;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 

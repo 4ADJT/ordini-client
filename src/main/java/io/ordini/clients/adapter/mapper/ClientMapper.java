@@ -1,7 +1,7 @@
-package io.ordini.clients.adapter.mapper.client;
+package io.ordini.clients.adapter.mapper;
 
-import io.ordini.clients.domain.model.client.ClientModel;
-import io.ordini.clients.infrastructure.persistence.jpa.entity.client.ClientEntity;
+import io.ordini.clients.domain.model.ClientModel;
+import io.ordini.clients.infrastructure.persistence.jpa.entity.ClientEntity;
 import org.mapstruct.InheritConfiguration;
 import org.mapstruct.Mapper;
 

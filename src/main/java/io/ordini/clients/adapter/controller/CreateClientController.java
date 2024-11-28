@@ -1,6 +1,6 @@
 package io.ordini.clients.adapter.controller;
 
-import io.ordini.clients.adapter.presenter.client.ClientPresenter;
+import io.ordini.clients.adapter.presenter.ClientPresenter;
 import io.ordini.clients.application.CreateClientUseCase;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;

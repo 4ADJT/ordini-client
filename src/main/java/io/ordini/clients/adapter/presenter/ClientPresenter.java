@@ -1,4 +1,4 @@
-package io.ordini.clients.adapter.presenter.client;
+package io.ordini.clients.adapter.presenter;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotEmpty;
@@ -68,5 +68,10 @@ public class ClientPresenter {
       LocalDateTime createdAt
   ) {
   }
+
+  @Builder
+  public record ClientDeletedResponse(
+      UUID id
+  ){}
 
 }

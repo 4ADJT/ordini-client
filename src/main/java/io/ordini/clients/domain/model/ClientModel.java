@@ -1,4 +1,4 @@
-package io.ordini.clients.domain.model.client;
+package io.ordini.clients.domain.model;
 
 import io.ordini.clients.domain.exception.ModelValidationIllegalArgumentException;
 import lombok.AllArgsConstructor;

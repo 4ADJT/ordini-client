@@ -1,5 +1,6 @@
 package io.ordini.clients.adapter.controller;
 
+import io.ordini.clients.adapter.presenter.ClientPresenter;
 import io.ordini.clients.application.DeleteClientUseCase;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
@@ -20,11 +21,13 @@ public class DeleteClientController {
   private final DeleteClientUseCase deleteClientUseCase;
 
   @DeleteMapping(value = "/delete/{clientId}")
-  public ResponseEntity<UUID> delete(
+  public ResponseEntity<ClientPresenter.ClientDeletedResponse> delete(
       @PathVariable UUID clientId
   ) {
 
-    return ResponseEntity.status(200).body(deleteClientUseCase.execute(clientId));
+    return ResponseEntity.status(200).body(
+        ClientPresenter.ClientDeletedResponse.builder().id(deleteClientUseCase.execute(clientId)).build()
+    );
   }
 
 }

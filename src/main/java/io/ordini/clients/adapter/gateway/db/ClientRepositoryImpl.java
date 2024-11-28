@@ -2,7 +2,7 @@ package io.ordini.clients.adapter.gateway.db;
 
 import io.ordini.clients.domain.repository.IClientRepository;
 import io.ordini.clients.infrastructure.persistence.jpa.db.IClientJpaRepository;
-import io.ordini.clients.infrastructure.persistence.jpa.entity.client.ClientEntity;
+import io.ordini.clients.infrastructure.persistence.jpa.entity.ClientEntity;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -36,7 +36,7 @@ public class ClientRepositoryImpl implements IClientRepository {
     Optional<ClientEntity> client = this.findById(clientId);
 
     if (client.isPresent()) {
-      repository.deleteById(clientId);
+      repository.delete(client.get());
       return client.get().getId();
     }
     return null;

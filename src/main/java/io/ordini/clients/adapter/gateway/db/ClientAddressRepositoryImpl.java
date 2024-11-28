@@ -2,7 +2,7 @@ package io.ordini.clients.adapter.gateway.db;
 
 import io.ordini.clients.domain.repository.IClientAddressRepository;
 import io.ordini.clients.infrastructure.persistence.jpa.db.IClientAddressJpaRepository;
-import io.ordini.clients.infrastructure.persistence.jpa.entity.client.ClientAddressEntity;
+import io.ordini.clients.infrastructure.persistence.jpa.entity.ClientAddressEntity;
 import lombok.AllArgsConstructor;
 import org.hibernate.query.IllegalQueryOperationException;
 import org.springframework.stereotype.Repository;

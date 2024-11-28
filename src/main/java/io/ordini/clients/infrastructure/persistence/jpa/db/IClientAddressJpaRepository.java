@@ -1,6 +1,6 @@
 package io.ordini.clients.infrastructure.persistence.jpa.db;
 
-import io.ordini.clients.infrastructure.persistence.jpa.entity.client.ClientAddressEntity;
+import io.ordini.clients.infrastructure.persistence.jpa.entity.ClientAddressEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.UUID;

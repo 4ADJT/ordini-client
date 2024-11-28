@@ -1,11 +1,11 @@
 package io.ordini.clients.application;
 
-import io.ordini.clients.adapter.mapper.client.ClientMapper;
-import io.ordini.clients.adapter.presenter.client.ClientPresenter;
+import io.ordini.clients.adapter.mapper.ClientMapper;
+import io.ordini.clients.adapter.presenter.ClientPresenter;
 import io.ordini.clients.domain.exception.ClientNotFoundException;
-import io.ordini.clients.domain.model.client.ClientModel;
+import io.ordini.clients.domain.model.ClientModel;
 import io.ordini.clients.domain.repository.IClientRepository;
-import io.ordini.clients.infrastructure.persistence.jpa.entity.client.ClientEntity;
+import io.ordini.clients.infrastructure.persistence.jpa.entity.ClientEntity;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;

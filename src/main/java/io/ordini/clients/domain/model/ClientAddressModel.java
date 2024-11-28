@@ -1,4 +1,4 @@
-package io.ordini.clients.domain.model.client;
+package io.ordini.clients.domain.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
