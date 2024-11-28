@@ -29,8 +29,8 @@ public class UpdateClientUseCase {
         .id(clientEntity.getId())
         .email(clientEntity.getEmail())
         .name(client.name())
-        .phone(client.phone())
-        .cellphone(client.cellphone())
+        .phone(client.phone() == null ? clientEntity.getPhone() : client.phone())
+        .cellphone(client.cellphone() == null ? clientEntity.getCellphone() : client.cellphone())
         .document(clientEntity.getDocument())
         .createdAt(clientEntity.getCreatedAt())
         .build();

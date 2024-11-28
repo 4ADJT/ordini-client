@@ -36,7 +36,6 @@ public class ClientPresenter {
       UUID id,
 
       @NonNull
-      @NotEmpty
       String name,
 
       String phone,
