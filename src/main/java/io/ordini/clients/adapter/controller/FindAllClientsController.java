@@ -7,6 +7,8 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.data.web.PagedModel;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,7 +25,8 @@ public class FindAllClientsController {
 
   @GetMapping(value = "/find-all", produces = "application/json")
   @Operation(summary = "Find all clients", description = "Find all clients.")
-  public ResponseEntity<PagedModel<ClientPresenter.ClientAndAddressResponse>> findAllClients(Pageable pageable) {
+  public ResponseEntity<PagedModel<ClientPresenter.ClientAndAddressResponse>> findAllClients(
+      @PageableDefault(size = 10, sort = "createdAt", direction = Sort.Direction.DESC) Pageable pageable) {
 
     Page<ClientPresenter.ClientAndAddressResponse> clients = findAllClientsUseCase.execute(pageable);
 
