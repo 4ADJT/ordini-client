@@ -33,12 +33,14 @@ public class ClientRepositoryImpl implements IClientRepository {
   @Override
   public UUID delete(UUID clientId) {
 
-    if (repository.existsById(clientId)) {
-      repository.deleteById(clientId);
-      return clientId;
-    }
+    Optional<ClientEntity> client = this.findById(clientId);
 
+    if (client.isPresent()) {
+      repository.deleteById(clientId);
+      return client.get().getId();
+    }
     return null;
+
   }
 
   @Override
