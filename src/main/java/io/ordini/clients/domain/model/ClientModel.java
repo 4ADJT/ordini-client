@@ -22,6 +22,7 @@ public class ClientModel {
   private String phone;
   private String cellphone;
   private String document;
+  private ClientAddressModel address;
   private LocalDateTime createdAt;
   private LocalDateTime updatedAt;
 
