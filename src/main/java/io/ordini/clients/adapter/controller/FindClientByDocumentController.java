@@ -1,7 +1,7 @@
 package io.ordini.clients.adapter.controller;
 
 import io.ordini.clients.adapter.presenter.ClientPresenter;
-import io.ordini.clients.application.FindClientByEmailUseCase;
+import io.ordini.clients.application.FindClientByDocumentUseCase;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
@@ -15,17 +15,17 @@ import org.springframework.web.bind.annotation.RestController;
 @Tag(name = "Client")
 @RestController
 @RequestMapping("/client")
-public class FindClientByEmailController {
+public class FindClientByDocumentController {
 
-  private final FindClientByEmailUseCase findClientByEmailUseCase;
+  private final FindClientByDocumentUseCase findClientByDocumentUseCase;
 
-  @GetMapping(value = "/find-email/{email}", produces = "application/json")
-  @Operation(summary = "Find client by email", description = "Find client by email.")
+  @GetMapping(value = "/find-document/{document}", produces = "application/json")
+  @Operation(summary = "Find client by document", description = "Find client by document.")
   public ResponseEntity<ClientPresenter.ClientAndAddressResponse> findClientByEmail(
-      @PathVariable String email
+      @PathVariable String document
   ) {
 
-    ClientPresenter.ClientAndAddressResponse client = findClientByEmailUseCase.execute(email);
+    ClientPresenter.ClientAndAddressResponse client = findClientByDocumentUseCase.execute(document);
 
     return ResponseEntity.ok(client);
   }

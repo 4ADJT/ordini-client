@@ -31,6 +31,19 @@ public class FindClientByEmailUseCase {
 
     ClientModel model = clientMapper.toModel(clientByEmail);
 
+    if(model.getAddress() == null) {
+      return ClientPresenter.ClientAndAddressResponse.builder()
+          .id(model.getId())
+          .email(model.getEmail())
+          .name(model.getName())
+          .phone(model.getPhone())
+          .cellphone(model.getCellphone())
+          .address(null)
+          .document(model.getDocument())
+          .createdAt(model.getCreatedAt())
+          .build();
+    }
+
     ClientAddressModel addressModel = clientAddressMapper.toModel(clientByEmail.getAddress());
 
     ClientAddressPresenter.ClientAddressResponse addressBuildPresenter = ClientAddressPresenter.ClientAddressResponse.builder()
