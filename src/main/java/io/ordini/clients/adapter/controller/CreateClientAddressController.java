@@ -1,5 +1,6 @@
 package io.ordini.clients.adapter.controller;
 
+import io.ordini.clients.adapter.gateway.ms.ClientPublisherService;
 import io.ordini.clients.adapter.presenter.ClientAddressPresenter;
 import io.ordini.clients.application.CreateClientAddressUseCase;
 import io.swagger.v3.oas.annotations.Operation;
@@ -17,6 +18,7 @@ import java.util.UUID;
 public class CreateClientAddressController {
 
   private final CreateClientAddressUseCase createClientAddressUseCase;
+  private final ClientPublisherService clientPublisherService;
 
   @PostMapping(value = "/create", produces = "application/json")
   @Operation(summary = "Create client address", description = "Create client address.")
@@ -25,6 +27,8 @@ public class CreateClientAddressController {
       @RequestParam(value = "client_id") UUID clientId)
   {
     ClientAddressPresenter.ClientAddressResponse response = createClientAddressUseCase.execute(clientId, request);
+
+    clientPublisherService.publishNewClientEvent(response.clientId().toString());
 
     return ResponseEntity.status(201).body(response);
   }
