@@ -41,6 +41,8 @@ public class UpdateClientAddressUseCase {
     clientAddressModel.setLongitude(address.longitude());
     clientAddressModel.setCreatedAt(addressExists.getCreatedAt());
 
+    clientAddressModel.validate();
+
     ClientAddressModel newClientAddress = mapper.toModel(repository.create(mapper.toEntity(clientAddressModel)));
 
     return ClientAddressPresenter.ClientAddressUpdateResponse.builder()

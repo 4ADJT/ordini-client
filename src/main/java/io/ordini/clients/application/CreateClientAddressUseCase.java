@@ -61,6 +61,8 @@ public class CreateClientAddressUseCase {
         .client(clientModel)
         .build();
 
+    addressModel.validate();
+
     ClientAddressEntity clientAddressEntity = mapper.toEntity(addressModel);
 
     ClientAddressModel newClientAddress = mapper.toModel(repository.create(clientAddressEntity));
