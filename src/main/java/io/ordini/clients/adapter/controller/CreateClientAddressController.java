@@ -2,6 +2,7 @@ package io.ordini.clients.adapter.controller;
 
 import io.ordini.clients.adapter.gateway.ms.ClientPublisherService;
 import io.ordini.clients.adapter.presenter.ClientAddressPresenter;
+import io.ordini.clients.adapter.presenter.ClientPresenter;
 import io.ordini.clients.application.CreateClientAddressUseCase;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -28,7 +29,8 @@ public class CreateClientAddressController {
   {
     ClientAddressPresenter.ClientAddressResponse response = createClientAddressUseCase.execute(clientId, request);
 
-    clientPublisherService.publishNewClientEvent(response.clientId().toString());
+    clientPublisherService.publishNewClientEvent(ClientPresenter.ClientMSSend.builder()
+        .id(response.clientId()).build());
 
     return ResponseEntity.status(201).body(response);
   }

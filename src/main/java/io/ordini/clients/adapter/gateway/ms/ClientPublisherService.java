@@ -1,5 +1,6 @@
 package io.ordini.clients.adapter.gateway.ms;
 
+import io.ordini.clients.adapter.presenter.ClientPresenter;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.cloud.stream.function.StreamBridge;
@@ -12,7 +13,7 @@ public class ClientPublisherService {
 
   private final StreamBridge streamBridge;
 
-  public void publishNewClientEvent(String json) {
+  public void publishNewClientEvent(ClientPresenter.ClientMSSend json) {
 
     boolean sent = streamBridge.send("new-client", json);
     if (sent) {

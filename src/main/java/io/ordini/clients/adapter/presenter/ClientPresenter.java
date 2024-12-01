@@ -74,4 +74,9 @@ public class ClientPresenter {
       UUID id
   ){}
 
+  @Builder
+  public record ClientMSSend (
+      UUID id
+  ) {}
+
 }
