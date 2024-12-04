@@ -57,6 +57,8 @@ services:
         condition: service_started
     networks:
       - ordini_network
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
 
   rabbitmq:
     image: rabbitmq:4.0-management
@@ -72,3 +74,5 @@ services:
       - RABBITMQ_DEFAULT_PASS=guest
     networks:
       - ordini_network
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
